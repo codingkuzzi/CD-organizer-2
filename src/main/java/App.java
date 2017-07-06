@@ -10,10 +10,20 @@ public class App {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
 
+
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+
+      ArrayList<Cd> cds = new ArrayList<Cd>();
+      Cd firstCd = new Cd("Pink", "Truth About Love", 1991);
+      Cd secondCd = new Cd("Pinchas Zuckerman", "Paganini Etudes", 1981);
+      Cd thirdCd = new Cd("Maria Callas", "Verdi Arias", 1951);
+      cds.add(firstCd);
+      cds.add(secondCd);
+      cds.add(thirdCd);
+
       model.put("cd", request.session().attribute("cd"));
-      // model.put("cds", request.session().attribute("cds"));
+      model.put("cds", request.session().attribute("cds"));
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -48,6 +58,14 @@ public class App {
       cds.add(newCd);
       model.put("cd", newCd);
       model.put("template", "templates/success.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/cds/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Cd cd = Cd.find(Integer.parseInt(request.params(":id")));
+      model.put("cd", cd);
+      model.put("template", "templates/cd.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
