@@ -6,6 +6,7 @@ public class Cd {
   private String mArtist;
   private String mTitle;
   private int mYear;
+  private String mGenre;
   private static List<Cd> instances = new ArrayList<Cd>();
   private int mId;
 
@@ -29,8 +30,16 @@ public class Cd {
     return mYear;
   }
 
+  public String getGenre() {
+    return mGenre;
+  }
+
   public int getId() {
     return mId;
+  }
+
+  public void setGenre(String genre) {
+       this.mGenre = genre;
   }
 
   public static List<Cd> all() {

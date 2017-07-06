@@ -1,0 +1,12 @@
+<!--genre.vtl-->
+<h1>$genre.getName()</h1>
+
+<ul>
+  #foreach($cd in $genre.getCds())
+   <li>$cd.getArtist(), $cd.getTitle(), $cd.getYear()</li>
+  #end
+</ul>
+
+<a href="/genres/$genre.getId()/cds/new">Add a new cd</a>
+<a href="/genres">All genres</a>
+<!--genre.vtl-->

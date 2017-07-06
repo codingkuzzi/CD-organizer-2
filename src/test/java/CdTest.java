@@ -32,6 +32,12 @@ public class CdTest {
   }
 
   @Test
+  public void Cd_instantiatesWithGetGenre_Rock() {
+    Cd myCd = new Cd("Pink","True About Love",1991);
+    assertEquals(1991, myCd.getYear());
+  }
+
+  @Test
   public void all_returnsAllInstancesOfCd_true() {
     Cd firstCd = new Cd("Pink", "Truth About Love", 1991);
     Cd secondCd = new Cd("Pinchas Zuckerman", "Paganini Etudes", 1981);
@@ -58,6 +64,13 @@ public class CdTest {
     Cd firstCd = new Cd("Pink", "Truth About Love", 1991);
     Cd secondCd = new Cd("Pinchas Zuckerman", "Paganini Etudes", 1981);
     assertEquals(Cd.find(secondCd.getId()), secondCd);
+  }
+
+  @Test
+  public void find_setCdWithGenre_Rock() {
+    Cd testCd = new Cd("Pink", "Truth About Love", 1991);
+    testCd.setGenre("Rock");
+    assertEquals("Rock", testCd.getGenre());
   }
 
 }
