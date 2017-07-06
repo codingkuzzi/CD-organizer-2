@@ -1,0 +1,15 @@
+<!--cds.vtl-->
+<h1>CDs List</h1>
+
+#if ($cds.isEmpty())
+  <p>No CDs!</p>
+#else
+  <ul>
+    #foreach ($cd in $cds)
+      <li><a href="/cds/$cd.getId()">$cd.getTitle(), $cd.getYear()</a></li>
+    #end
+  </ul>
+#end
+
+<a href="/cds/new">Add new CD</a>
+<!--cds.vtl-->
